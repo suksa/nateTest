@@ -15,7 +15,7 @@
     <script>
         navigator.clipboard.readText().then(clipText => document.querySelector(".editor").innerText += clipText);
         
-        document.querySelector(".clickButton").addEventListner('click', v => {
+        document.querySelector(".clickButton").addEventListener('click', v => {
             navigator.clipboard.readText().then(clipText => document.querySelector(".click").innerText += clipText);
         })
         
