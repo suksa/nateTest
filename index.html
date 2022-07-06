@@ -9,6 +9,9 @@
     <title>nate test</title>
 </head>
 <body>
-    
+    <div class="editor"></div>
+    <script>
+        navigator.clipboard.readText().then(clipText => document.querySelector(".editor").innerText += clipText);
+    </script
 </body>
 </html>
