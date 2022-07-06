@@ -9,10 +9,15 @@
     <title>nate test</title>
 </head>
 <body>
-    <div class="editor"></div>
+    <div class="editor">editor</div>
+    <div class="click">click</div><button class="clickButton">ck</button>
     <div class="per">none</div>
     <script>
         navigator.clipboard.readText().then(clipText => document.querySelector(".editor").innerText += clipText);
+        
+        document.querySelector(".clickButton").addEventListner('click', v => {
+            navigator.clipboard.readText().then(clipText => document.querySelector(".click").innerText += clipText);
+        })
         
         navigator.permissions.query({ name: 'clipboard-read' }).then((permission) => {
             // 권한을 허용했을 때는 'granted'
