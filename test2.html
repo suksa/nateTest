@@ -11,6 +11,37 @@
         overflow: hidden;
         opacity: 0;
       }
+      
+      .w {
+        background-color: transparent;
+        -webkit-border-radius: 0;
+        border-radius: 0;
+        border: 0;
+        padding: 0;
+        font-size: 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        vertical-align: top;
+      }
+      .s {
+        width: 15px;
+        height: 15px;
+        display: inline-block;
+        vertical-align: top;
+        position: static;
+        color: rgba(0, 0, 0, 0);
+        display: inline-block;
+        vertical-align: top;
+        margin: 0;
+        clip: auto;
+        overflow: hidden;
+      }
     </style>
   </head>
   <body>
@@ -18,6 +49,11 @@
       <input type="checkbox" class="m_chk bg_chk_off" name="m_chk" value="7">
       <span class="ic"></span>
       <span class="sound_only">메일 선택</span>
+    </label>
+    <label>
+      <input type="checkbox" class="w" name="m_chk" value="7">
+      <span class="ic"></span>
+      <span class="s">메일 선택</span>
     </label>
   </body>
 </html>
