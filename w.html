@@ -15,7 +15,7 @@
     
     <script>
       function loadPhotos(event) {
-        var photoInput = document.getElementById("photoInput");
+        var photoInput = event.target;
         var photoPreviewContainer = document.getElementById("photoPreviewContainer");
         var files = photoInput.files;
         if (files.length > 10) {
