@@ -4,11 +4,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="apple-touch-icon" sizes="180x180" href="./ssul_w@2x.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="./ssul_w@2x.png">
     <title>nate test</title>
 </head>
 <body>
-    w
+    <input type="file" accept="image/*" capture="camera" id="photoInput" onchange="loadPhotos(event)">
+    <div id="photoPreviewContainer"></div>
+    
+    <script>
+      function loadPhotos(event) {
+        var photoInput = document.getElementById("photoInput");
+        var photoPreviewContainer = document.getElementById("photoPreviewContainer");
+        var files = photoInput.files;
+        if (files.length > 10) {
+          alert("사진은 10장까지만 선택할 수 있습니다.");
+          photoInput.value = "";
+          return;
+        }
+        for (var i = 0; i < files.length; i++) {
+          var file = files[i];
+          var reader = new FileReader();
+          reader.onload = function(event) {
+            var photoPreview = document.createElement("img");
+            photoPreview.src = event.target.result;
+            photoPreviewContainer.appendChild(photoPreview);
+          };
+          reader.readAsDataURL(file);
+        }
+      }
+    </script>
 </body>
 </html>
