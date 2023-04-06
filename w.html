@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>nate test4</title>
+    <title>nate test5</title>
 </head>
 <body>
-    한장 사진(종합메뉴) <input type="file" accept="image/*" id="photoInput" onchange="loadPhotos(event)"> <br>
-    한장 카메라 <input type="file" accept="image/*" capture="camera" id="photoInput" onchange="loadPhotos(event)"> <br><br>
+    <!-- 한장 사진(종합메뉴) <input type="file" accept="image/*" id="photoInput" onchange="loadPhotos(event)"> <br> -->
+    <!-- 한장 카메라 <input type="file" accept="image/*" capture="camera" id="photoInput" onchange="loadPhotos(event)"> <br><br> -->
     여러장 사진(종합메뉴) <input type="file" accept="image/*" multiple id="photoInput" onchange="loadPhotos(event)"> <br>
-    여러장 카메라 <input type="file" accept="image/*" multiple capture="camera" id="photoInput" onchange="loadPhotos(event)"> <br>
+    <!-- 여러장 카메라 <input type="file" accept="image/*" multiple capture="camera" id="photoInput" onchange="loadPhotos(event)"> <br> -->
+    <p id="pp"></p>
     <div id="photoPreviewContainer"></div>
     
     <script>
@@ -18,7 +19,7 @@
         var photoInput = event.target;
         var photoPreviewContainer = document.getElementById("photoPreviewContainer");
         var files = photoInput.files;
-        console.log(files)
+        document.querySelector('#pp').textContent = files.join(', ')
         if (files.length > 10) {
           alert("사진은 10장까지만 선택할 수 있습니다.");
           photoInput.value = "";
