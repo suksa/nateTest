@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>nate test5</title>
+    <title>nate test3</title>
 </head>
 <body>
     <!-- 한장 사진(종합메뉴) <input type="file" accept="image/*" id="photoInput" onchange="loadPhotos(event)"> <br> -->
@@ -15,35 +15,89 @@
     <div id="photoPreviewContainer"></div>
     
     <script>
-      function loadPhotos(event) {
-        var photoInput = event.target;
         var photoPreviewContainer = document.getElementById("photoPreviewContainer");
-        var files = photoInput.files;
-        document.querySelector('#pp').textContent = files.join(', ')
-        if (files.length > 10) {
-          alert("사진은 10장까지만 선택할 수 있습니다.");
-          photoInput.value = "";
-          return;
-        }
-        for (var i = 0; i < files.length; i++) {
-          (function(n) {
-            var file = files[n];
-            var reader = new FileReader();
-            reader.onload = function(event) {
-                console.log(event)
-                var photoPreview = document.createElement("img");
-                photoPreview.src = event.target.result;
-                
-                var p = document.createElement("p");
-                p.textContent = file.name
+        async function loadPhotos (event) {
+            const files = event.target.files;
 
-                photoPreviewContainer.appendChild(p);
-                photoPreviewContainer.appendChild(photoPreview);
-            };
-            reader.readAsDataURL(file);
-          })(i)
-        }
-      }
+            const images = [];
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                console.log(file)
+                const imagePromise = new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    reader.onload = () => {
+                        const img = new Image();
+                        img.src = URL.createObjectURL(file);
+                        img.onload = () => {
+                            return resolve(img)
+                        };
+                        img.onerror = reject;
+                    };
+                });
+
+                images.push(imagePromise);
+            }
+
+            const loadedImages = await Promise.all(images);
+            
+            loadedImages.forEach(img => photoPreviewContainer.appendChild(img));
+    }
+// imageInput.addEventListener('change', async (event) => {
+//   const files = event.target.files;
+
+//   const images = [];
+//   for (let i = 0; i < files.length; i++) {
+//     const file = files[i];
+
+//     const imagePromise = new Promise((resolve, reject) => {
+//       const reader = new FileReader();
+//       reader.readAsDataURL(file);
+//       reader.onload = () => {
+//         const img = new Image();
+//         img.src = URL.createObjectURL(file);
+//         img.onload = () => resolve(img);
+//         img.onerror = reject;
+//       };
+//     });
+
+//     images.push(imagePromise);
+//   }
+
+//   const loadedImages = await Promise.all(images);
+//   loadedImages.forEach(img => imageContainer.appendChild(img));
+// });
+
+    //   function loadPhotos(event) {
+    //     var photoInput = event.target;
+    //     var photoPreviewContainer = document.getElementById("photoPreviewContainer");
+    //     var files = photoInput.files;
+    //     console.log(files)
+    //     document.querySelector('#pp').textContent = files.join(', ')
+    //     if (files.length > 10) {
+    //       alert("사진은 10장까지만 선택할 수 있습니다.");
+    //       photoInput.value = "";
+    //       return;
+    //     }
+    //     for (var i = 0; i < files.length; i++) {
+    //       (function(n) {
+    //         var file = files[n];
+    //         var reader = new FileReader();
+    //         reader.onload = function(event) {
+    //             console.log(event)
+    //             var photoPreview = document.createElement("img");
+    //             photoPreview.src = event.target.result;
+                
+    //             var p = document.createElement("p");
+    //             p.textContent = file.name
+
+    //             photoPreviewContainer.appendChild(p);
+    //             photoPreviewContainer.appendChild(photoPreview);
+    //         };
+    //         reader.readAsDataURL(file);
+    //       })(i)
+    //     }
+    //   }
     </script>
 </body>
 </html>
