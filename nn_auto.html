@@ -6,9 +6,20 @@
     <title>Document</title>
 </head>
 <body>
+    <button id="btn" onClick="test()">btn</button>
     <script>
-        var callAppURL = "intent://newslink?url=https://m.news.nate.com/view/20240205n30636?list=edit&cate=tot#Intent;scheme=nate;package=com.nate.android.portalmini;end";
-        window.location = callAppURL;
+        setTimeout(() => {
+            test()
+
+            setTimeout(() => {
+                document.querySelector('#btn').click()
+            }, 1000);
+        }, 1000);
+        function test() {
+            alert(1)
+            var callAppURL = "intent://newslink?url=https://m.news.nate.com/view/20240205n30636?list=edit&cate=tot#Intent;scheme=nate;package=com.nate.android.portalmini;end";
+            window.location = callAppURL;
+        }
     </script>
 </body>
 </html>
