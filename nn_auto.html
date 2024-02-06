@@ -1,13 +1,60 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="네이트 뉴스">
+    <link rel="apple-touch-icon" href="https://m.news.nate.com/touch-icon-iphone.png">
+    <link rel="apple-touch-startup-image" href="https://m.news.nate.com/splash-screen.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-itunes-app" content="app-id=1234567890">
+    <meta name="google-play-app" content="app-id=com.nate.android.portalmini">
+    <meta name="intent"
+        content="intent://newslink?url=https://m.news.nate.com/view/20240205n30636?list=edit&cate=tot#Intent;scheme=nate;package=com.nate.android.portalmini;end">
 </head>
+
 <body>
+    <button onClick="test1()">btn1</button>
+    <button onClick="test2()">btn2</button>
+    <button onClick="test3()">btn3</button>
+    <button onClick="test4()">btn4</button>
     <script>
-        document.location.replace("intent://newslink?url=https://m.news.nate.com/view/20240205n30636?list=edit&cate=tot#Intent;scheme=nate;package=com.nate.android.portalmini;end");
-</script>
+        var callAppURL = "intent://newslink?url=https://m.news.nate.com/view/20240205n30636?list=edit&cate=tot#Intent;scheme=nate;package=com.nate.android.portalmini;end";
+
+        function test1() {
+            window.location.href = callAppURL
+        }
+        function test2() {
+            window.location.replace(callAppURL)
+        }
+        function test3() {
+            window.open(callAppURL, '_blank')
+        }
+        function test4() {
+            var iframe = document.createElement('iframe')
+            iframe.style.display = 'none'
+            iframe.src = deepLink
+            document.body.appendChild(iframe)
+        }
+
+        setTimeout(() => {
+            test1()
+            setTimeout(() => {
+                test2()
+            }, 1000);
+            setTimeout(() => {
+                test3()
+                setTimeout(() => {
+                    test4()
+                }, 1000);
+            }, 1000);
+        }, 1000);
+    </script>
 </body>
+
 </html>
