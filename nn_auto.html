@@ -6,22 +6,23 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- <button id="btn" onClick="test()">btn</button> -->
     <script>
-        setTimeout(() => {
-            // test()
-
-            // setTimeout(() => {
-            //     document.querySelector('#btn').click()
-            // }, 1000);
-        }, 1000);
-        function test() {
-            alert(1)
-            var callAppURL = "intent://newslink?url=https://m.news.nate.com/view/20240205n30636?list=edit&cate=tot#Intent;scheme=nate;package=com.nate.android.portalmini;end";
-            window.location = callAppURL;
-            window.open('intent://newslink?url=https://m.news.nate.com/view/20240205n30636?list=edit&cate=tot#Intent;scheme=nate;package=com.nate.android.portalmini;end', '_blank')
-        }
-        test()
+    // 딥링크 주소
+    var deepLink = "intent://newslink?url=https://m.news.nate.com/view/20240205n30636?list=edit&cate=tot#Intent;scheme=nate;package=com.nate.android.portalmini;end";
+    
+    // 페이지가 로드될 때 딥링크로 리다이렉트
+    window.onload = function() {
+        // iframe을 사용하여 딥링크 열기 시도
+        var iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = deepLink;
+        document.body.appendChild(iframe);
+    
+        // 일정 시간이 지난 후 iframe 제거 (선택사항)
+        setTimeout(function() {
+            document.body.removeChild(iframe);
+        }, 2000); // 2초 후에 iframe 제거
+    };
     </script>
 </body>
 </html>
