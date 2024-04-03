@@ -4,13 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="shortcut icon" href="//image9.coupangcdn.com/image/coupang/favicon/v2/favicon.ico" type="image/x-icon" /> -->
-    <!-- <link rel="apple-touch-icon-precomposed" href="//image6.coupangcdn.com/image/coupang/favicon/v2/favicon_256x256.ico" /> -->
-    <!-- <link rel="manifest" href="/app.webmanifest" crossorigin="use-credentials" /> -->
-    <title>Document</title>
+    <meta property="og:title" content="모임 하러가요" />
+    <meta property="og:image" content="https://thumb.pann.com/tc_240x152/https://fimg5.pann.com/new/download.jsp?FileID=67554129" />
+    <meta property="og:description" content="러블리즈 단체로 놀뭐 나와서 각자 별명 말해주는 시간저는 핵주먹  저는 빵떡   저는 고라니  ♡ 저는 꽃이요 ♡  ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ 또 못 참고 과거로 돌아감ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ케이랑 유재석 사이엔 어떤 일이" />
+    <title>모임 하러가요</title>
 </head>
 
 <body>
+    <div>v0.0.1</div>
     <div id="agent" style="color: red">agent</div>
     <div id="type" style="color: green">type</div>
     <button type="button" id="goWeb">웹으로 보기</button>
@@ -18,8 +19,10 @@
 
     <script>
         // common
-        var redirectWebUrl = 'https\x3A\x2F\x2Fm\x2Ecoupang\x2Ecom\x2Fvm\x2Fproducts\x2F1291667269\x3FitemId\x3D2302831005\x26vendorItemId\x3D70299738968\x26src\x3D1191000\x26spec\x3D10999999\x26addtag\x3D400\x26ctag\x3D1291667269\x26lptag\x3DCFM47518456\x26itime\x3D20240402231224\x26pageType\x3DPRODUCT\x26pageValue\x3D1291667269\x26wPcid\x3D17031565194372424363473\x26wRef\x3D\x26wTime\x3D20240402231224\x26redirect\x3Dlanding\x26mcid\x3D3630e738b0694656b4ea54539b82c282\x26sharesource\x3Dsharebutton\x26style\x3D\x26isshortened\x3DY\x26settlement\x3DN';
-        var appScheme = 'coupang\x3A\x2F\x2Fmlp\x3FflowId\x3D7\x26enableFlowEngine\x3DY\x26fallback\x3Dcoupang\x253A\x252F\x252Fhome\x26splitKey\x3DloginRedirection\x26trafficType\x3Dmarketing\x26rUrl\x3Dcoupang\x253A\x252F\x252Fproduct\x253FpId\x253D1291667269\x2526itemId\x253D2302831005\x2526vendorItemId\x253D70299738968\x2526src\x253D1191000\x2526spec\x253D10999999\x2526addtag\x253D400\x2526ctag\x253D1291667269\x2526lptag\x253DCFM47518456\x2526itime\x253D20240402231224\x2526pageType\x253DPRODUCT\x2526pageValue\x253D1291667269\x2526wPcid\x253D17031565194372424363473\x2526wRef\x253D\x2526wTime\x253D20240402231224\x2526redirect\x253Dlanding\x2526mcid\x253D3630e738b0694656b4ea54539b82c282\x2526sharesource\x253Dsharebutton\x2526style\x253D\x2526isshortened\x253DY\x2526settlement\x253DN\x26src\x3D1191000\x26spec\x3D10999999\x26addtag\x3D400\x26ctag\x3D1291667269\x26lptag\x3DCFM47518456\x26itime\x3D20240402231224\x26pageType\x3DPRODUCT\x26pageValue\x3D1291667269\x26wPcid\x3D17031565194372424363473\x26wRef\x3D\x26wTime\x3D20240402231224\x26redirect\x3Dlanding\x26mcid\x3D3630e738b0694656b4ea54539b82c282\x26sharesource\x3Dsharebutton\x26style\x3D\x26isshortened\x3DY\x26settlement\x3DN';
+        // var redirectWebUrl = 'https\x3A\x2F\x2Fm\x2Ecoupang\x2Ecom\x2Fvm\x2Fproducts\x2F1291667269\x3FitemId\x3D2302831005\x26vendorItemId\x3D70299738968\x26src\x3D1191000\x26spec\x3D10999999\x26addtag\x3D400\x26ctag\x3D1291667269\x26lptag\x3DCFM47518456\x26itime\x3D20240402231224\x26pageType\x3DPRODUCT\x26pageValue\x3D1291667269\x26wPcid\x3D17031565194372424363473\x26wRef\x3D\x26wTime\x3D20240402231224\x26redirect\x3Dlanding\x26mcid\x3D3630e738b0694656b4ea54539b82c282\x26sharesource\x3Dsharebutton\x26style\x3D\x26isshortened\x3DY\x26settlement\x3DN';
+        var redirectWebUrl = 'https://m.nate.com';
+        // var appScheme = 'coupang\x3A\x2F\x2Fmlp\x3FflowId\x3D7\x26enableFlowEngine\x3DY\x26fallback\x3Dcoupang\x253A\x252F\x252Fhome\x26splitKey\x3DloginRedirection\x26trafficType\x3Dmarketing\x26rUrl\x3Dcoupang\x253A\x252F\x252Fproduct\x253FpId\x253D1291667269\x2526itemId\x253D2302831005\x2526vendorItemId\x253D70299738968\x2526src\x253D1191000\x2526spec\x253D10999999\x2526addtag\x253D400\x2526ctag\x253D1291667269\x2526lptag\x253DCFM47518456\x2526itime\x253D20240402231224\x2526pageType\x253DPRODUCT\x2526pageValue\x253D1291667269\x2526wPcid\x253D17031565194372424363473\x2526wRef\x253D\x2526wTime\x253D20240402231224\x2526redirect\x253Dlanding\x2526mcid\x253D3630e738b0694656b4ea54539b82c282\x2526sharesource\x253Dsharebutton\x2526style\x253D\x2526isshortened\x253DY\x2526settlement\x253DN\x26src\x3D1191000\x26spec\x3D10999999\x26addtag\x3D400\x26ctag\x3D1291667269\x26lptag\x3DCFM47518456\x26itime\x3D20240402231224\x26pageType\x3DPRODUCT\x26pageValue\x3D1291667269\x26wPcid\x3D17031565194372424363473\x26wRef\x3D\x26wTime\x3D20240402231224\x26redirect\x3Dlanding\x26mcid\x3D3630e738b0694656b4ea54539b82c282\x26sharesource\x3Dsharebutton\x26style\x3D\x26isshortened\x3DY\x26settlement\x3DN';
+        var appScheme = 'meetup://meetdetail/5kLDQrZVDXB8V';
         var device = checkDevice();
 
         // test
