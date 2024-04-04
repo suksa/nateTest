@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ko</title>
+</head>
+
+<body>
+    <script>
+        function isAppInstalled(packageName, successCallback, failureCallback) {
+            // WebView에서 실행되고 있는지 확인
+            if (window.JSInterface) {
+                // WebView의 Java 인터페이스 메서드 호출
+                window.JSInterface.isAppInstalled(packageName, function (isInstalled) {
+                    if (isInstalled) {
+                        successCallback();
+                    } else {
+                        failureCallback();
+                    }
+                });
+            } else {
+                alert('WebView 환경이 아닙니다.');
+            }
+        }
+
+        function openPlayStore(packageName) {
+            const playStoreUrl = `https://play.google.com/store/apps/details?id=com.coupang.mobile`;
+            window.location.href = playStoreUrl;
+        }
+
+        const appPackageName = 'com.coupang.mobile';
+
+        isAppInstalled(
+            appPackageName,
+            function () {
+                alert('앱이 설치되어 있습니다.');
+                // 앱 실행 로직 추가
+            },
+            function () {
+                alert('앱이 설치되어 있지 않습니다.');
+                openPlayStore(appPackageName);
+            }
+        );
+    </script>
+</body>
+
+</html>
