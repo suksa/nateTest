@@ -14,5 +14,99 @@
     <button type="button" id="goWeb">웹으로 보기</button>
     <button type="button" id="goApp">앱으로 보기</button>
     <button type="button" id="goDown">앱 다운로드</button>
+
+    <script>
+        var urlScheme = 'meetup://meetdetail/5kLDQrZVDXB8V'
+        var packageName = 'com.skcomms.android.ppazl'
+        var aos = {
+            intentScheme: 'intent://meetdetail/5kLDQoqn5#Intent;scheme=meetup;package='+ packageName +';end;',
+            storeScheme: 'market://details?id=' + packageName
+        }
+        var ios = {
+            storeLink: 'http://itunes.apple.com/kr/app/kupang-coupang/id454434967?mt=8'
+        }
+
+        var device = checkDevice();
+
+        if (device === 'android') {
+            aosFunc()
+        } else if (device === 'ios') {
+            iosFunc()
+        }
+
+        function checkDevice() {
+            var ua = navigator.userAgent.toLowerCase();
+            var androidPattern = /android/i;
+            var tabletPattern = /tablet/i;
+            var iPhonePattern = /iphone/i;
+            var desktopPattern = /windows|macintosh|linux/i;
+
+            if (androidPattern.test(ua) && !tabletPattern.test(ua)) {
+                return "android";
+            } else if (iPhonePattern.test(ua)) {
+                return "ios";
+            } else if (desktopPattern.test(ua)) {
+                return "pc";
+            } else {
+                return 'other';
+            }
+        }
+
+        function aosFunc() {
+            function goAppWithFailedCallback(redirectFailedCallback) {
+                if (typeof redirectFailedCallback !== 'function') {
+                    redirectFailedCallback = function () { };
+                }
+                var startTime = new Date().getTime();
+                let timeout = null;
+                function cancelTimeout() {
+                    if (timeout) clearTimeout(timeout);
+                    timeout = null;
+                }
+                timeout = setTimeout(function () {
+                    window.removeEventListener('blur', cancelTimeout);
+                    const currTime = new Date().getTime();
+                    if (currTime - startTime < 1000) {
+                        redirectFailedCallback();
+                    }
+                }, 500);
+                window.addEventListener('blur', cancelTimeout, { once: true });
+                setTimeout(function () {
+                    location.href = aos.intentScheme;
+                }, 32);
+            }
+
+            function goAppStore() {
+                location.href = aos.storeScheme;
+            }
+
+            document.querySelector('#goWeb').addEventListener('click', function () {
+                // location.href = redirectUrl;
+            })
+
+            document.querySelector('#goApp').addEventListener('click', function () {
+                goAppWithFailedCallback(function () {
+                    goAppStore();
+                });
+            })
+        }
+
+        function iosFunc() {
+            function goApp() {
+                location.href = urlScheme;
+            }
+
+            document.querySelector('#goWeb').addEventListener('click', function () {
+                // location.href = redirectUrl;
+            })
+
+            document.querySelector('#goApp').addEventListener('click', function () {
+                goApp();
+                setTimeout(function () {
+                    window.location.href = ios.storeLink;
+                }, 100);
+            })
+        }
+    </script>
 </body>
 </html>
