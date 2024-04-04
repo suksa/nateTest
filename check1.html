@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <div>0.0.3</div>
+    <div>0.0.5</div>
     <script>
         function isAppInstalled(customURLScheme) {
             const appInstalledURL = `${customURLScheme}://`;
@@ -37,6 +37,7 @@
         isAppInstalled(twitterScheme)
             .then(isInstalled => {
                 console.log(`coupang 앱 설치 여부: ${isInstalled}`);
+                alert(isInstalled)
                 if (!isInstalled) {
                     // 앱이 설치되어 있지 않다면 플레이스토어로 이동
                     const playStoreURL = 'https://play.google.com/store/apps/details?id=com.coupang.android';
@@ -44,6 +45,7 @@
                 }
             })
             .catch(err => {
+                alert('에러')
                 console.error('에러 발생:', err);
             });
 
