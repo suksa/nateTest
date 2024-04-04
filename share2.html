@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="모임 하러가요" />
+    <meta property="og:image" content="https://thumb.pann.com/tc_240x152/https://fimg5.pann.com/new/download.jsp?FileID=67554129" />
+    <meta property="og:description" content="러블리즈 단체로 놀뭐 나와서 각자 별명 말해주는 시간저는 핵주먹  저는 빵떡   저는 고라니  ♡ 저는 꽃이요 ♡  ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ 또 못 참고 과거로 돌아감ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ케이랑 유재석 사이엔 어떤 일이" />
+    <title>모임 하러가요2</title>
+</head>
+<body>
+    <div>v0.0.6</div>
+    <div id="agent" style="color: red">agent</div>
+    <div id="type" style="color: green">type</div>
+
+    <script>
+        var webUrl = 'https://m.nate.com';
+        var urlScheme = 'meetup://meetdetail/5kLDQrZVDXB8V'
+        var aos = {
+            intentScheme: 'intent://meetdetail/5kLDQoqn5#Intent;scheme=meetup;package=com.skcomms.android.ppazl;end;',
+            store: 'market\x3A\x2F\x2Fdetails\x3Fid\x3Dcom\x2Ecoupang\x2Emobile\x26url\x3Dcoupang\x3A\x2F\x2Fmlp\x3FflowId\x253D7\x2526enableFlowEngine\x253DY\x2526fallback\x253Dcoupang\x25253A\x25252F\x25252Fhome\x2526splitKey\x253DloginRedirection\x2526trafficType\x253Dmarketing\x2526rUrl\x253Dcoupang\x25253A\x25252F\x25252Fproduct\x25253FpId\x25253D1291667269\x252526itemId\x25253D2302831005\x252526vendorItemId\x25253D70299738968\x252526src\x25253D1191000\x252526spec\x25253D10999999\x252526addtag\x25253D400\x252526ctag\x25253D1291667269\x252526lptag\x25253DCFM47518456\x252526itime\x25253D20240402231224\x252526pageType\x25253DPRODUCT\x252526pageValue\x25253D1291667269\x252526wPcid\x25253D17031565194372424363473\x252526wRef\x25253D\x252526wTime\x25253D20240402231224\x252526redirect\x25253Dlanding\x252526mcid\x25253D3630e738b0694656b4ea54539b82c282\x252526sharesource\x25253Dsharebutton\x252526style\x25253D\x252526isshortened\x25253DY\x252526settlement\x25253DN\x2526src\x253D1191000\x2526spec\x253D10999999\x2526addtag\x253D400\x2526ctag\x253D1291667269\x2526lptag\x253DCFM47518456\x2526itime\x253D20240402231224\x2526pageType\x253DPRODUCT\x2526pageValue\x253D1291667269\x2526wPcid\x253D17031565194372424363473\x2526wRef\x253D\x2526wTime\x253D20240402231224\x2526redirect\x253Dlanding\x2526mcid\x253D3630e738b0694656b4ea54539b82c282\x2526sharesource\x253Dsharebutton\x2526style\x253D\x2526isshortened\x253DY\x2526settlement\x253DN\x26referrer\x3Dcontent\x5Ftype\x253Dproduct\x2526content\x5Fid\x253D1291667269\x2526src\x253D1191000\x2526spec\x253D10999999\x2526addtag\x253D400\x2526ctag\x253D1291667269\x2526lptag\x253DCFM47518456\x2526itime\x253D20240402231224\x2526pageType\x253DPRODUCT\x2526pageValue\x253D1291667269\x2526wPcid\x253D17031565194372424363473\x2526wRef\x253D\x2526wTime\x253D20240402231224\x2526redirect\x253Dlanding\x2526mcid\x253D3630e738b0694656b4ea54539b82c282\x2526sharesource\x253Dsharebutton\x2526style\x253D\x2526isshortened\x253DY\x2526settlement\x253DN'
+        }
+        var ios = {
+            store: 'http\x3A\x2F\x2Fitunes\x2Eapple\x2Ecom\x2Fkr\x2Fapp\x2Fkupang\x2Dcoupang\x2Fid454434967\x3Fmt\x3D8'
+        }
+        var initialTime = new Date().getTime();
+        var device = checkDevice();
+
+        if (device === 'android') {
+            aosFunc()
+        }
+
+        function aosFunc() {
+            function goAppWithFailedCallback(redirectFailedCallback) {
+                if (typeof redirectFailedCallback !== 'function') {
+                    redirectFailedCallback = function () { };
+                }
+                var startTime = new Date().getTime();
+                let timeout = null;
+                function cancelTimeout() {
+                    if (timeout) clearTimeout(timeout);
+                    timeout = null;
+                }
+                timeout = setTimeout(function () {
+                    window.removeEventListener('blur', cancelTimeout);
+                    const currTime = new Date().getTime();
+                    if (currTime - startTime < 1000) {
+                        redirectFailedCallback();
+                    }
+                }, 500);
+                window.addEventListener('blur', cancelTimeout, { once: true });
+                setTimeout(function () {
+                    location.href = appScheme;
+                }, 32);
+            }
+
+            function goAppStore(startTime) {
+                location.href = appStoreUrl;
+            }
+
+            goAppWithFailedCallback(function () {
+                location.href = webUrl;
+            });
+
+            document.querySelector('#goWeb').addEventListener('click', function () {
+                location.href = webUrl;
+            })
+
+            document.querySelector('#goApp').addEventListener('click', function () {
+                goAppWithFailedCallback(function () {
+                    goAppStore();
+                });
+            })
+        }
+    </script>
+</body>
+</html>
