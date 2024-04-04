@@ -8,47 +8,9 @@
 </head>
 
 <body>
-    <div>0.0.5</div>
+    <div>0.0.6</div>
     <script>
-        function isAppInstalled(customURLScheme) {
-            const appInstalledURL = `${customURLScheme}://`;
-            const tempWindow = window.open(appInstalledURL, '_blank', 'location=yes');
-
-            return new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    try {
-                        // 앱이 설치되어 있다면 tempWindow.location.href가 변경됩니다.
-                        const isInstalled = tempWindow.location.href !== appInstalledURL;
-                        resolve(isInstalled);
-                    } catch (err) {
-                        reject(err);
-                    } finally {
-                        // 열린 창이 있다면 닫습니다.
-                        if (tempWindow) {
-                            tempWindow.close();
-                        }
-                    }
-                }, 100); // 안드로이드에서는 약간의 대기 시간이 필요합니다.
-            });
-        }
-
-        // 사용 예시
-        const twitterScheme = 'coupang';
-        isAppInstalled(twitterScheme)
-            .then(isInstalled => {
-                console.log(`coupang 앱 설치 여부: ${isInstalled}`);
-                alert(isInstalled)
-                if (!isInstalled) {
-                    // 앱이 설치되어 있지 않다면 플레이스토어로 이동
-                    const playStoreURL = 'https://play.google.com/store/apps/details?id=com.coupang.android';
-                    window.location.href = playStoreURL;
-                }
-            })
-            .catch(err => {
-                alert('에러')
-                console.error('에러 발생:', err);
-            });
-
+        alert(document.referrer)
     </script>
 </body>
 
