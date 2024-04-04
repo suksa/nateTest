@@ -8,32 +8,45 @@
 </head>
 
 <body>
-    <div>0.0.2</div>
+    <div>0.0.3</div>
     <script>
-        function openAppOrRedirect(customURLScheme, appStoreURL) {
+        function isAppInstalled(customURLScheme) {
             const appInstalledURL = `${customURLScheme}://`;
-            const tempWindow = window.open(appInstalledURL, '_blank');
+            const tempWindow = window.open(appInstalledURL, '_blank', 'location=yes');
 
-            if (tempWindow) {
-                // 앱이 설치되어 있는 경우 tempWindow는 열린 상태입니다.
-                tempWindow.close();
-                return true; // 앱이 설치되어 있음
-            } else {
-                // 앱이 설치되어 있지 않은 경우 앱스토어로 리다이렉트
-                window.location.replace(appStoreURL);
-                return false; // 앱이 설치되어 있지 않음
-            }
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    try {
+                        // 앱이 설치되어 있다면 tempWindow.location.href가 변경됩니다.
+                        const isInstalled = tempWindow.location.href !== appInstalledURL;
+                        resolve(isInstalled);
+                    } catch (err) {
+                        reject(err);
+                    } finally {
+                        // 열린 창이 있다면 닫습니다.
+                        if (tempWindow) {
+                            tempWindow.close();
+                        }
+                    }
+                }, 100); // 안드로이드에서는 약간의 대기 시간이 필요합니다.
+            });
         }
 
         // 사용 예시
         const twitterScheme = 'coupang';
-        const twitterAppStoreURL = 'market\x3A\x2F\x2Fdetails\x3Fid\x3Dcom\x2Ecoupang\x2Emobile\x26url\x3Dcoupang\x3A\x2F\x2Fmlp\x3FflowId\x253D7\x2526enableFlowEngine\x253DY\x2526fallback\x253Dcoupang\x25253A\x25252F\x25252Fhome\x2526splitKey\x253DloginRedirection\x2526trafficType\x253Dmarketing\x2526rUrl\x253Dcoupang\x25253A\x25252F\x25252Fproduct\x25253FpId\x25253D1291667269\x252526itemId\x25253D2302831005\x252526vendorItemId\x25253D70299738968\x252526src\x25253D1191000\x252526spec\x25253D10999999\x252526addtag\x25253D400\x252526ctag\x25253D1291667269\x252526lptag\x25253DCFM47518456\x252526itime\x25253D20240402231224\x252526pageType\x25253DPRODUCT\x252526pageValue\x25253D1291667269\x252526wPcid\x25253D17031565194372424363473\x252526wRef\x25253D\x252526wTime\x25253D20240402231224\x252526redirect\x25253Dlanding\x252526mcid\x25253D3630e738b0694656b4ea54539b82c282\x252526sharesource\x25253Dsharebutton\x252526style\x25253D\x252526isshortened\x25253DY\x252526settlement\x25253DN\x2526src\x253D1191000\x2526spec\x253D10999999\x2526addtag\x253D400\x2526ctag\x253D1291667269\x2526lptag\x253DCFM47518456\x2526itime\x253D20240402231224\x2526pageType\x253DPRODUCT\x2526pageValue\x253D1291667269\x2526wPcid\x253D17031565194372424363473\x2526wRef\x253D\x2526wTime\x253D20240402231224\x2526redirect\x253Dlanding\x2526mcid\x253D3630e738b0694656b4ea54539b82c282\x2526sharesource\x253Dsharebutton\x2526style\x253D\x2526isshortened\x253DY\x2526settlement\x253DN\x26referrer\x3Dcontent\x5Ftype\x253Dproduct\x2526content\x5Fid\x253D1291667269\x2526src\x253D1191000\x2526spec\x253D10999999\x2526addtag\x253D400\x2526ctag\x253D1291667269\x2526lptag\x253DCFM47518456\x2526itime\x253D20240402231224\x2526pageType\x253DPRODUCT\x2526pageValue\x253D1291667269\x2526wPcid\x253D17031565194372424363473\x2526wRef\x253D\x2526wTime\x253D20240402231224\x2526redirect\x253Dlanding\x2526mcid\x253D3630e738b0694656b4ea54539b82c282\x2526sharesource\x253Dsharebutton\x2526style\x253D\x2526isshortened\x253DY\x2526settlement\x253DN';
+        isAppInstalled(twitterScheme)
+            .then(isInstalled => {
+                console.log(`coupang 앱 설치 여부: ${isInstalled}`);
+                if (!isInstalled) {
+                    // 앱이 설치되어 있지 않다면 플레이스토어로 이동
+                    const playStoreURL = 'https://play.google.com/store/apps/details?id=com.coupang.android';
+                    window.location.href = playStoreURL;
+                }
+            })
+            .catch(err => {
+                console.error('에러 발생:', err);
+            });
 
-        setTimeout(() => {
-            const isTwitterInstalled = openAppOrRedirect(twitterScheme, twitterAppStoreURL);
-
-            alert(`Twitter 앱 설치 여부: ${isTwitterInstalled}`);
-        }, 1000);
     </script>
 </body>
 
