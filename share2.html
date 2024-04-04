@@ -9,7 +9,7 @@
     <title>모임 하러가요2</title>
 </head>
 <body>
-    <div>v0.0.7</div>
+    <div>v0.0.8</div>
     <div id="agent" style="color: red">agent</div>
     <div id="type" style="color: green">type</div>
 
@@ -29,6 +29,24 @@
 
         if (device === 'android') {
             aosFunc()
+        }
+
+        function checkDevice() {
+            var ua = navigator.userAgent.toLowerCase();
+            var androidPattern = /android/i;
+            var tabletPattern = /tablet/i;
+            var iPhonePattern = /iphone/i;
+            var desktopPattern = /windows|macintosh|linux/i;
+
+            if (androidPattern.test(ua) && !tabletPattern.test(ua)) {
+                return "android";
+            } else if (iPhonePattern.test(ua)) {
+                return "ios";
+            } else if (desktopPattern.test(ua)) {
+                return "pc";
+            } else {
+                return 'other';
+            }
         }
 
         function aosFunc() {
