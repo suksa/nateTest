@@ -15,15 +15,12 @@
 
     <script>
         var redirectUrl = './p.html';
-        var urlScheme = 'meetup://meetdetail/5kLDQrZVDXB8V'
         var packageName = 'com.skcomms.android.ppazl'
+        var urlScheme = 'meetup://meetdetail/5kLDQrZVDXB8V'
         var aos = {
             intentScheme: 'intent://meetdetail/5kLDQoqn5#Intent;scheme=meetup;package='+ packageName +';end;',
-            storeScheme: 'market://details?id=' + packageName
         }
-        var ios = {
-            store: 'http\x3A\x2F\x2Fitunes\x2Eapple\x2Ecom\x2Fkr\x2Fapp\x2Fkupang\x2Dcoupang\x2Fid454434967\x3Fmt\x3D8'
-        }
+
         var initialTime = new Date().getTime();
         var device = checkDevice();
 
@@ -79,23 +76,9 @@
                 }, 32);
             }
 
-            function goAppStore(startTime) {
-                location.href = aos.storeScheme;
-            }
-
             goAppWithFailedCallback(function () {
                 location.href = redirectUrl;
             });
-
-            document.querySelector('#goWeb').addEventListener('click', function () {
-                location.href = redirectUrl;
-            })
-
-            document.querySelector('#goApp').addEventListener('click', function () {
-                goAppWithFailedCallback(function () {
-                    goAppStore();
-                });
-            })
         }
 
         function iosFunc() {
@@ -112,14 +95,6 @@
             setTimeout(function () {
                 goApp();
             }, 100);
-
-            document.querySelector('#goWeb').addEventListener('click', function () {
-                location.href = redirectUrl;
-            })
-
-            document.querySelector('#goApp').addEventListener('click', function () {
-                goApp();
-            })
         }
     </script>
 </body>
