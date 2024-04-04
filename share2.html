@@ -14,7 +14,7 @@
     <div id="type" style="color: green">type</div>
 
     <script>
-        var webUrl = 'https://m.nate.com';
+        var redirectUrl = './p.html';
         var urlScheme = 'meetup://meetdetail/5kLDQrZVDXB8V'
         var packageName = 'com.skcomms.android.ppazl'
         var aos = {
@@ -29,6 +29,12 @@
 
         if (device === 'android') {
             aosFunc()
+        } else if (device === 'ios') {
+            iosFunc()
+        } else if (device === 'pc') {
+            location.href = redirectUrl;
+        } else if (device === 'other') {
+            location.href = redirectUrl;
         }
 
         function checkDevice() {
@@ -78,17 +84,41 @@
             }
 
             goAppWithFailedCallback(function () {
-                location.href = webUrl;
+                location.href = redirectUrl;
             });
 
             document.querySelector('#goWeb').addEventListener('click', function () {
-                location.href = webUrl;
+                location.href = redirectUrl;
             })
 
             document.querySelector('#goApp').addEventListener('click', function () {
                 goAppWithFailedCallback(function () {
                     goAppStore();
                 });
+            })
+        }
+
+        function iosFunc() {
+            function goApp() {
+                location.href = urlScheme;
+            }
+
+            setTimeout(function () {
+                if (new Date().getTime() - initialTime < 1000) {
+                    location.href = redirectUrl;
+                }
+            }, 500);
+
+            setTimeout(function () {
+                goApp();
+            }, 100);
+
+            document.querySelector('#goWeb').addEventListener('click', function () {
+                location.href = redirectUrl;
+            })
+
+            document.querySelector('#goApp').addEventListener('click', function () {
+                goApp();
             })
         }
     </script>
