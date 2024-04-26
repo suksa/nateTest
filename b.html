@@ -9,8 +9,10 @@
     <title>nate test</title>
 </head>
 <body>
+    <div id="aa"></div>
     <script>
         console.log(window.__PSI_RELOAD_COUNT__, window.__PSI_TARGETS__, window)
+        document.querySelector('#aa').textContent = `${window.__PSI_RELOAD_COUNT__ ? 1 : 0}${window.__PSI_TARGETS__ ? 1 : 0}`
     </script>
 </body>
 </html>
